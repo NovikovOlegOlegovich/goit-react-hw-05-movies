@@ -1,14 +1,26 @@
-import { Link } from 'react-router-dom';
-// import { getFilmById } from '../API/index';
+import { useState } from 'react';
+import MovieCard from '../components/MovieCard';
+import MoviCardList from '../components/MoviCardList';
+import SearchForm from '../components/SearchForm';
+// import { Link } from 'react-router-dom';
+import { getFilmByQuery } from '../API/index';
 
 const Movies = () => {
+  const [films, setFilms] = useState([]);
+
+  const handleSubmit = async query => {
+    const films = await getFilmByQuery(query);
+    setFilms(films);
+  };
+
   return (
     <>
-      <p>Film Name</p>
-      <nav>
-        <Link to="cast">Cast</Link>
-        <Link to="reviews">Reviews</Link>
-      </nav>
+      <SearchForm handleSubmit={handleSubmit} />
+      <MoviCardList>
+        {films.map(film => (
+          <MovieCard film={film} key={film.id} />
+        ))}
+      </MoviCardList>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { getTrendingFilms } from '../API/index';
+import Heder1 from '../components/Heder1';
+import HomeFilmList from '../components/HomeFilmList';
 
 const Home = () => {
   const [trendingFilms, setTrendingFilms] = useState([]);
@@ -26,14 +27,8 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
-      <ul>
-        {trendingFilms.map(({ original_title, id }) => (
-          <li key={id}>
-            <NavLink to={`/movies/${id}`}>{original_title}</NavLink>
-          </li>
-        ))}
-      </ul>
+      <Heder1>Trending today</Heder1>
+      <HomeFilmList trendingFilms={trendingFilms} />
     </>
   );
 };

@@ -3,14 +3,14 @@ const API_KEY = '91ae85947dca7203ec2b4d7841a3c73b';
 
 export const getTrendingFilms = async () => {
   const response = await fetch(
-    `${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}&language=en - US`
+    `${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}&language=en-US`
   );
   if (!response.ok) {
     throw new Error('Ops .... ');
   }
-  const filmList = await response.json();
+  const { results } = await response.json();
 
-  return filmList.results;
+  return results;
 };
 
 export const getFilmById = async id => {
@@ -25,7 +25,37 @@ export const getFilmById = async id => {
   return film;
 };
 
-//   const params = new URLSearchParams({
-//     api_key: '91ae85947dca7203ec2b4d7841a3c73b',
-//     language: 'en - US',
-//   });
+export const getFilmByQuery = async query => {
+  const response = await fetch(
+    `${BASE_URL}/3/search/movie?query=${query}&api_key=${API_KEY}&language=en - US`
+  );
+  if (!response.ok) {
+    throw new Error('Ops .... ');
+  }
+  const { results } = await response.json();
+
+  return results;
+};
+
+export const getActorsByFilmId = async id => {
+  const response = await fetch(
+    `${BASE_URL}/3/movie/${id}/credits?api_key=${API_KEY}&language=en - US`
+  );
+  if (!response.ok) {
+    throw new Error('Ops .... ');
+  }
+  const { cast } = await response.json();
+
+  return cast;
+};
+
+export const getReviewsByFilmId = async id => {
+  const response = await fetch(
+    `${BASE_URL}/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
+  );
+  if (!response.ok) {
+    throw new Error('Ops .... ');
+  }
+  const { results } = await response.json();
+  return results;
+};
