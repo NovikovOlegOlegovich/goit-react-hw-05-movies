@@ -1,45 +1,15 @@
-import { Routes, Route, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+import { LayoutWrapper, Navigation, NavigationLink } from './Layout.styled';
 
 const Layout = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-        marginBottom: 20,
-      }}
-    >
-      <nav
-        style={{
-          fontSize: 40,
-          marginBottom: 20,
-        }}
-      >
-        <NavLink
-          to="/"
-          style={{
-            marginRight: 20,
-            textDecorationLine: 'none',
-          }}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/movies"
-          style={{
-            textDecorationLine: 'none',
-          }}
-        >
-          Movies
-        </NavLink>
-      </nav>
+    <LayoutWrapper>
+      <Navigation>
+        <NavigationLink to="/">Home</NavigationLink>
+        <NavigationLink to="/movies">Movies</NavigationLink>
+      </Navigation>
       <Outlet />
-    </div>
+    </LayoutWrapper>
   );
 };
 

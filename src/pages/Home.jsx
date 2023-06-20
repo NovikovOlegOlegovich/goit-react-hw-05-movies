@@ -25,6 +25,8 @@ const Home = () => {
     fetchFilms();
   }, []);
 
+  console.log(trendingFilms);
+
   return (
     <>
       <Heder1>Trending today</Heder1>

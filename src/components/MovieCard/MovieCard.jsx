@@ -1,42 +1,55 @@
-import { SearchFilmItem } from './MovieCard.styled';
+import React from 'react';
+import {
+  SearchFilmItem,
+  Poster,
+  FilmCardWrapper,
+  EverageDescription,
+  HederOverview,
+  OverviewDescription,
+  HederGenres,
+  GenresDescription,
+} from './MovieCard.styled';
 import Heder1 from '../Heder1';
 
 const MovieCard = ({ film }) => {
-  const { poster_path, original_title, vote_average, overview } = film;
+  const { poster_path, original_title, vote_average, overview, genres } = film;
+
+  const ganres = () => {
+    let stringOfGanres = '';
+    genres?.map(ganre => {
+      stringOfGanres += ` ${ganre.name}`;
+    });
+    return stringOfGanres;
+  };
+
+  const listOfGanres = ganres();
+  const average = vote_average?.toFixed(1);
 
   return (
     <SearchFilmItem>
       {poster_path ? (
-        <img
+        <Poster
           src={`https://image.tmdb.org/t/p/original${poster_path}`}
           alt="poster"
           height="650"
-        ></img>
+        ></Poster>
       ) : (
-        <img
+        <Poster
           src="https://placehold.co/500x750?text=Poster+not+available"
           alt="poster"
           height="650"
-        ></img>
+        ></Poster>
       )}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginLeft: 20,
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <FilmCardWrapper>
         <Heder1>{original_title}</Heder1>
-        <p style={{ fontSize: '25px' }}>User Score {vote_average}</p>
-        <h2 style={{ margin: '0' }}>Overview</h2>
-        <p style={{ fontSize: '25px' }}>{overview}</p>
-        <h3 style={{ margin: '0' }}>Genres</h3>
-        {/* <p>{genres}</p> */}
-      </div>
+        <EverageDescription>User Score: {average}</EverageDescription>
+        <HederOverview>Overview</HederOverview>
+        <OverviewDescription>{overview}</OverviewDescription>
+        <HederGenres>Genres</HederGenres>
+        <GenresDescription>{listOfGanres}</GenresDescription>
+      </FilmCardWrapper>
     </SearchFilmItem>
   );
 };
 
-export default MovieCard;
+export default React.memo(MovieCard);

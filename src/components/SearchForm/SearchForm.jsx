@@ -10,12 +10,7 @@ const SearchForm = ({ handleSubmit }) => {
 
   return (
     <InputContainer>
-      <Input
-        type="text"
-        value={query}
-        onChange={hendlChange}
-        style={{ width: '300px' }}
-      ></Input>
+      <Input type="text" value={query} onChange={hendlChange}></Input>
       <Button onClick={() => handleSubmit(query)}>Search</Button>
     </InputContainer>
   );
