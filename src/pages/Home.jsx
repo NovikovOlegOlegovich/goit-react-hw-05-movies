@@ -25,7 +25,7 @@ const Home = () => {
     fetchFilms();
   }, []);
 
-  console.log(trendingFilms);
+  console.log(error);
 
   return (
     <>

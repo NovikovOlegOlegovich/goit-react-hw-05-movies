@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useParams, Link } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { getFilmById } from '../API/index';
 import MovieCard from '../components/MovieCard';
+import FilmDeteilsLinks from '../components/FilmDeteilsLinks';
 
 const MovieDetails = () => {
   const [searchFilm, setSearchFilm] = useState('');
@@ -26,11 +27,12 @@ const MovieDetails = () => {
     fetchFilmsById();
   }, [query]);
 
+  console.log(error);
+
   return (
     <>
       <MovieCard film={searchFilm} />
-      <Link to="cast">cast</Link>
-      <Link to="reviews">reviews</Link>
+      <FilmDeteilsLinks />
       <Outlet />
     </>
   );
