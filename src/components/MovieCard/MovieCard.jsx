@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
@@ -59,6 +60,16 @@ const MovieCard = ({ film }) => {
       </SearchFilmItem>
     </>
   );
+};
+
+MovieCard.propTypes = {
+  film: PropTypes.shape({
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string.isRequired,
+    vote_average: PropTypes.string.isRequired,
+    overview: PropTypes.string,
+    genres: PropTypes.string,
+  }),
 };
 
 export default React.memo(MovieCard);

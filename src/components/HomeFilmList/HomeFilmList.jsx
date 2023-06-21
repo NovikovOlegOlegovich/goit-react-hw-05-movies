@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   FilmList,
   FilmListItem,
@@ -24,6 +25,14 @@ const HomeFilmList = ({ trendingFilms }) => {
       ))}
     </FilmList>
   );
+};
+
+HomeFilmList.propTypes = {
+  trendingFilms: PropTypes.shape({
+    original_title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+  }),
 };
 
 export default HomeFilmList;
