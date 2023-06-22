@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import SearchForm from '../components/SearchForm';
 import { getFilmByQuery } from '../API/index';
 import HomeFilmList from '../components/HomeFilmList';
 
 const Movies = () => {
-  const [films, setFilms] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [films, setFilms] = useState();
+  const searchQuery = searchParams.get('query') ?? '';
 
-  const handleSubmit = async query => {
-    const films = await getFilmByQuery(query);
-    setFilms(films);
+  const handleSubmit = query => {
+    query ? setSearchParams({ query }) : setSearchParams({});
   };
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await getFilmByQuery(searchQuery);
+      setFilms(response);
+    };
+    fetch();
+  }, [searchQuery]);
 
   return (
     <>

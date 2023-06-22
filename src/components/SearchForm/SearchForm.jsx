@@ -12,17 +12,18 @@ const SearchForm = ({ handleSubmit }) => {
     setQuery('');
   };
 
+  const hendleSubmitForm = event => {
+    event.preventDefault();
+    handleSubmit(query);
+    resetForm();
+  };
+
+  console.log(query);
+
   return (
-    <InputContainer>
+    <InputContainer onSubmit={hendleSubmitForm}>
       <Input type="text" value={query} onChange={hendlChange}></Input>
-      <Button
-        onClick={() => {
-          handleSubmit(query);
-          resetForm();
-        }}
-      >
-        Search
-      </Button>
+      <Button type="submit">Search</Button>
     </InputContainer>
   );
 };

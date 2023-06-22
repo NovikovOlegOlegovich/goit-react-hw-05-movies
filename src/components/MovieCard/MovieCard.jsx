@@ -29,26 +29,23 @@ const MovieCard = ({ film }) => {
 
   const listOfGanres = ganres();
   const average = vote_average?.toFixed(1);
-
+  const defaultPoster =
+    'https://placehold.co/500x750?text=Poster+not+available';
   return (
     <>
       <BackLinkLocationRef to={backLinkLocationRef.current}>
         Back
       </BackLinkLocationRef>
       <SearchFilmItem>
-        {poster_path ? (
-          <Poster
-            src={`https://image.tmdb.org/t/p/original${poster_path}`}
-            alt="poster"
-            height="650"
-          ></Poster>
-        ) : (
-          <Poster
-            src="https://placehold.co/500x750?text=Poster+not+available"
-            alt="poster"
-            height="650"
-          ></Poster>
-        )}
+        <Poster
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/original${poster_path}`
+              : defaultPoster
+          }
+          alt="poster"
+          height="650"
+        ></Poster>
         <FilmCardWrapper>
           <FilmTitle>{original_title}</FilmTitle>
           <EverageDescription>User Score: {average}</EverageDescription>

@@ -16,29 +16,32 @@ const Cast = () => {
     fetch();
   }, [filmId]);
 
-  return (
+  const defaultPoster =
+    'https://placehold.co/500x750?text=Poster+not+available';
+  const isCast = actors.length;
+  console.log(actors.length);
+
+  return isCast > 0 ? (
     <CastList>
       {actors.map(({ profile_path, name, character, id }) => (
         <li key={id}>
-          {profile_path ? (
-            <img
-              src={`https://image.tmdb.org/t/p/original${profile_path}`}
-              alt="actor"
-              width="200"
-            ></img>
-          ) : (
-            <img
-              src="https://placehold.co/500x750?text=Poster+not+available"
-              alt="actor"
-              width="200"
-            ></img>
-          )}
+          <img
+            src={
+              profile_path
+                ? `https://image.tmdb.org/t/p/original${profile_path}`
+                : defaultPoster
+            }
+            alt="actor"
+            width="200"
+          ></img>
 
           <CastName>{name}</CastName>
           <CastCharacter>Character: {character}</CastCharacter>
         </li>
       ))}
     </CastList>
+  ) : (
+    <p>Cast not found</p>
   );
 };
 export default Cast;

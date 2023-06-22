@@ -9,13 +9,19 @@ import {
 
 const HomeFilmList = ({ trendingFilms }) => {
   const location = useLocation();
+  const defaultPoster =
+    'https://placehold.co/500x750?text=Poster+not+available';
   return (
     <FilmList>
-      {trendingFilms.map(({ original_title, id, poster_path }) => (
+      {trendingFilms?.map(({ original_title, id, poster_path }) => (
         <NavigationLink to={`/movies/${id}`} state={{ from: location }}>
           <FilmListItem key={id}>
             <img
-              src={`https://image.tmdb.org/t/p/original${poster_path}`}
+              src={
+                poster_path
+                  ? `https://image.tmdb.org/t/p/original${poster_path}`
+                  : defaultPoster
+              }
               width="200"
               alt="poster"
             ></img>
