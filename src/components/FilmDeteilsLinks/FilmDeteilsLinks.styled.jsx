@@ -8,7 +8,7 @@ export const DeteilLinksList = styled.ul`
   border-bottom: 1px solid black;
 `;
 export const DeteilLinksItem = styled.li`
-  &:first-child {
+  &:first-of-type {
     margin-right: 10px;
   }
 `;

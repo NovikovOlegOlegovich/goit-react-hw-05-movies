@@ -60,12 +60,12 @@ const MovieCard = ({ film }) => {
 };
 
 MovieCard.propTypes = {
-  film: PropTypes.shape({
+  searchFilm: PropTypes.shape({
     poster_path: PropTypes.string,
     original_title: PropTypes.string.isRequired,
-    vote_average: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
     overview: PropTypes.string,
-    genres: PropTypes.string,
+    genres: PropTypes.array,
   }),
 };
 

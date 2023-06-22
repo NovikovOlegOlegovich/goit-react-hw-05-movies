@@ -19,7 +19,6 @@ const Cast = () => {
   const defaultPoster =
     'https://placehold.co/500x750?text=Poster+not+available';
   const isCast = actors.length;
-  console.log(actors.length);
 
   return isCast > 0 ? (
     <CastList>

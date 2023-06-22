@@ -11,11 +11,12 @@ const HomeFilmList = ({ trendingFilms }) => {
   const location = useLocation();
   const defaultPoster =
     'https://placehold.co/500x750?text=Poster+not+available';
+
   return (
     <FilmList>
       {trendingFilms?.map(({ original_title, id, poster_path }) => (
-        <NavigationLink to={`/movies/${id}`} state={{ from: location }}>
-          <FilmListItem key={id}>
+        <FilmListItem key={id}>
+          <NavigationLink to={`/movies/${id}`} state={{ from: location }}>
             <img
               src={
                 poster_path
@@ -26,15 +27,15 @@ const HomeFilmList = ({ trendingFilms }) => {
               alt="poster"
             ></img>
             <MovieTitle> {original_title}</MovieTitle>
-          </FilmListItem>
-        </NavigationLink>
+          </NavigationLink>
+        </FilmListItem>
       ))}
     </FilmList>
   );
 };
 
 HomeFilmList.propTypes = {
-  trendingFilms: PropTypes.shape({
+  trendingFilm: PropTypes.shape({
     original_title: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     poster_path: PropTypes.string,
@@ -42,3 +43,7 @@ HomeFilmList.propTypes = {
 };
 
 export default HomeFilmList;
+// PropTypes.shape({
+//     original_title: PropTypes.string.isRequired,
+//     id: PropTypes.string.isRequired,
+//     poster_path: PropTypes.string,

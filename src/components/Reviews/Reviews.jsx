@@ -16,7 +16,12 @@ const Reviews = () => {
   }, [filmId]);
 
   return reviews.length ? (
-    reviews.map(({ content }) => <p style={{ fontSize: '25px' }}>{content}</p>)
+    reviews.map(({ content, author, id }) => (
+      <div key={id}>
+        <p>{author}</p>
+        <p style={{ fontSize: '25px' }}>{content}</p>
+      </div>
+    ))
   ) : (
     <p>Reviews does not found</p>
   );
